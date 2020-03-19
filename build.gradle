@@ -4,6 +4,7 @@ buildscript {
     ext.fasterxml_version = "2.9.10"
     ext.mockito_version = "2.23.0"
     ext.junit_version = "5.3.2"
+    ext.httpclient_version = "4.5"
 
     repositories {
         jcenter()
@@ -36,6 +37,7 @@ dependencies {
     compile group: "org.springframework.boot", name: "spring-boot-starter-web"
     compile group: "com.fasterxml.jackson.module", name: 'jackson-module-afterburner', version: "$fasterxml_version"
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: "$fasterxml_version"
+    compile group: "org.apache.httpcomponents", name: "httpclient", version: "$httpclient_version"
 
     testCompile group: "org.springframework.boot", name: "spring-boot-starter-test", version: "$spring_boot_version"
     testCompile group: "org.mockito", name: "mockito-core", version: "$mockito_version"
