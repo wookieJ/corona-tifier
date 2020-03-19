@@ -4,7 +4,8 @@ buildscript {
     ext.fasterxml_version = "2.9.10"
     ext.mockito_version = "2.23.0"
     ext.junit_version = "5.3.2"
-    ext.httpclient_version = "4.5"
+    ext.http_client_version = "4.5"
+    ext.spring_security = "3.1.0.RELEASE"
 
     repositories {
         jcenter()
@@ -37,7 +38,8 @@ dependencies {
     compile group: "org.springframework.boot", name: "spring-boot-starter-web"
     compile group: "com.fasterxml.jackson.module", name: 'jackson-module-afterburner', version: "$fasterxml_version"
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: "$fasterxml_version"
-    compile group: "org.apache.httpcomponents", name: "httpclient", version: "$httpclient_version"
+    compile group: "org.apache.httpcomponents", name: "httpclient", version: "$http_client_version"
+    compile group: "org.springframework.security", name: "spring-security-core", version: "$spring_security"
 
     testCompile group: "org.springframework.boot", name: "spring-boot-starter-test", version: "$spring_boot_version"
     testCompile group: "org.mockito", name: "mockito-core", version: "$mockito_version"

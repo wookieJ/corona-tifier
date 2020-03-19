@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.EnableScheduling
 import pl.jobs.CasesScheduler
 import pl.service.CasesService
 
-
 @Configuration
 @EnableScheduling
 @EnableConfigurationProperties(CasesSchedulerProperties::class)
@@ -20,10 +19,7 @@ class Configuration {
 
     @Bean
     @ConditionalOnProperty(value = ["jobs.enabled"], matchIfMissing = false, havingValue = "true")
-    fun scheduledJob(
-        casesSchedulerProperties: CasesSchedulerProperties,
-        casesService: CasesService
-    ): CasesScheduler {
+    fun scheduledJob(casesSchedulerProperties: CasesSchedulerProperties, casesService: CasesService): CasesScheduler {
         return CasesScheduler(casesSchedulerProperties.delayInMinutes * MILLISECONDS_IN_MINUTE, casesService)
     }
 
