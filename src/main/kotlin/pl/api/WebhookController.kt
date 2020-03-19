@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import pl.logger
 import pl.model.CountryInformation
@@ -16,7 +17,7 @@ import pl.service.CasesService
 class WebhookController(val casesService: CasesService) {
 
     @PostMapping("/webhook")
-    fun webhookEvent(event: Any): Any {
+    fun webhookEvent(@RequestBody event: Any): Any {
         logger.info("POST /webhook $event")
         return event
     }
