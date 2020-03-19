@@ -1,0 +1,5 @@
+jobs:
+  enabled: true
+
+cases:
+  delayInMinutes: 1
