@@ -1,4 +1,4 @@
-package pl.service
+package pl.manager
 
 import org.apache.http.client.HttpResponseException
 import org.springframework.http.HttpStatus
@@ -10,7 +10,7 @@ import pl.model.CountryInformation
 import pl.logger
 
 @Component
-class CasesService(val restTemplate: RestTemplate) {
+class CasesManager(val restTemplate: RestTemplate) {
     fun getCountryInformation(country: String): CountryInformation {
         try {
             val countryResponse: ResponseEntity<CountryInformation> = restTemplate.getForEntity("https://corona.lmao.ninja/countries/$country", CountryInformation::class.java)

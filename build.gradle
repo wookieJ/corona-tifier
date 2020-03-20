@@ -5,7 +5,8 @@ buildscript {
     ext.mockito_version = "2.23.0"
     ext.junit_version = "5.3.2"
     ext.http_client_version = "4.5"
-    ext.spring_security = "3.1.0.RELEASE"
+    ext.spring_security_version = "3.1.0.RELEASE"
+    ext.spring_mongo_version = "2.2.5.RELEASE"
 
     repositories {
         jcenter()
@@ -39,7 +40,11 @@ dependencies {
     compile group: "com.fasterxml.jackson.module", name: 'jackson-module-afterburner', version: "$fasterxml_version"
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: "$fasterxml_version"
     compile group: "org.apache.httpcomponents", name: "httpclient", version: "$http_client_version"
-    compile group: "org.springframework.security", name: "spring-security-core", version: "$spring_security"
+    compile group: "org.springframework.security", name: "spring-security-core", version: "$spring_security_version"
+    compile group: "org.springframework.boot", name: "spring-boot-starter-data-mongodb", version: "$spring_mongo_version"
+
+    // TODO - clean imports below
+    compile group: 'com.google.actions', name: 'actions-on-google', version: '1.0.0'
 
     testCompile group: "org.springframework.boot", name: "spring-boot-starter-test", version: "$spring_boot_version"
     testCompile group: "org.mockito", name: "mockito-core", version: "$mockito_version"

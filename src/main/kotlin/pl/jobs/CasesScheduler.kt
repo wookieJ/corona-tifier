@@ -3,12 +3,12 @@ package pl.jobs
 import org.springframework.scheduling.annotation.Scheduled
 import pl.logger
 import pl.model.CountryInformation
-import pl.service.CasesService
+import pl.manager.CasesManager
 
 class CasesScheduler(
-    private val delay: Long, private val casesService: CasesService
+    private val cron: String, private val casesService: CasesManager
 ) {
-    @Scheduled(fixedDelay = 60_000)
+    @Scheduled(cron = "0 0 8-23 ? * *")
     fun getCountriesScheduler() {
         val countriesCases: Array<CountryInformation> = casesService.getCountriesInformation()
         val polandCases: CountryInformation = casesService.getCountryInformation("poland")

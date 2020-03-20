@@ -2,4 +2,4 @@ jobs:
   enabled: true
 
 cases:
-  delayInMinutes: 30
+  cron: "0 0 8-23 ? * * *"

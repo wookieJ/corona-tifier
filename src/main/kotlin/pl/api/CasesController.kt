@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 import pl.logger
 import pl.model.CountryInformation
-import pl.service.CasesService
+import pl.manager.CasesManager
 
 @RestController
-class CasesController(val casesService: CasesService) {
+class CasesController(val casesService: CasesManager) {
 
     @GetMapping("/countries")
     fun getCountriesInformation(): Array<CountryInformation> {
