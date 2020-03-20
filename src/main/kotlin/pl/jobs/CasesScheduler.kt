@@ -6,8 +6,10 @@ import pl.model.CountryInformation
 import pl.manager.CasesManager
 
 class CasesScheduler(
-    private val cron: String, private val casesService: CasesManager
+    private val cron: String?,
+    private val casesService: CasesManager
 ) {
+    // TODO - cron value from properties
     @Scheduled(cron = "0 0 8-23 ? * *")
     fun getCountriesScheduler() {
         val countriesCases: Array<CountryInformation> = casesService.getCountriesInformation()

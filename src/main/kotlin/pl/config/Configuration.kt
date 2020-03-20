@@ -14,13 +14,13 @@ import pl.manager.CasesManager
 
 @Configuration
 @EnableScheduling
-@EnableConfigurationProperties(CasesSchedulerProperties::class)
+@EnableConfigurationProperties(value = [CasesProperties::class, FacebookProperties::class])
 class Configuration {
 
     @Bean
     @ConditionalOnProperty(value = ["jobs.enabled"], matchIfMissing = false, havingValue = "true")
-    fun scheduledJob(casesSchedulerProperties: CasesSchedulerProperties, casesService: CasesManager): CasesScheduler {
-        return CasesScheduler(casesSchedulerProperties.cron, casesService)
+    fun scheduledJob(casesProperties: CasesProperties, casesService: CasesManager): CasesScheduler {
+        return CasesScheduler(casesProperties.cron, casesService)
     }
 
     @Bean

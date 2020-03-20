@@ -1,26 +1,32 @@
 package pl.api
 
-import com.google.actions.api.ActionContext
-import com.google.actions.api.ActionRequest
 import org.apache.http.client.HttpResponseException
+import org.springframework.core.env.Environment
+import org.springframework.core.env.get
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
+import pl.entity.MessengerResponse
+import pl.entity.WebhookRequest
 import pl.logger
-import pl.manager.CasesManager
+import pl.manager.MessagesManager
+import pl.webhook.CountryWebhookHandler
 
 @RestController
-class WebhookController(val casesService: CasesManager) {
+class WebhookController(
+    val environment: Environment, val countryWebhookHandler: CountryWebhookHandler, val messagesManager: MessagesManager
+) {
 
-    @PostMapping("/webhook")
-    fun webhookEvent(@RequestBody actionRequest: ActionRequest): ActionRequest {
-        val context: ActionContext = actionRequest.getContext(CONTEXT_NAME) ?: throw Exception("Context not found")
-        val userId: Any? = context.parameters?.get("facebook_sender_id") ?: throw Exception("User ID not found")
-        logger.info("POST /webhook from $userId")
-        return actionRequest
+    @PostMapping(value = ["/webhook"], consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun webHookEvent(@RequestBody webhookRequest: WebhookRequest) {
+        logger.info("POST /webhook")
+        val webhookResponse = countryWebhookHandler.handle(webhookRequest)
+        val accessToken: String = environment[ACCESS_TOKEN_ENV_NAME] ?: throw Exception("Access token not found")
+        messagesManager.sendMessage(accessToken, webhookResponse)
     }
 
     @ExceptionHandler
@@ -43,6 +49,6 @@ class WebhookController(val casesService: CasesManager) {
 
     companion object {
         private val logger by logger()
-        private const val CONTEXT_NAME = "projects/sekretarztwo-jxstmq/agent/sessions/7db067e2-9bb3-4de4-b2b9-5453d5706f6d/contexts/generic"
+        private const val ACCESS_TOKEN_ENV_NAME = "ACCESS_TOKEN"
     }
 }

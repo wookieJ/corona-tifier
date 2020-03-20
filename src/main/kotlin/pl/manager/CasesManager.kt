@@ -6,14 +6,16 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestTemplate
+import pl.config.CasesProperties
 import pl.model.CountryInformation
 import pl.logger
 
 @Component
-class CasesManager(val restTemplate: RestTemplate) {
+class CasesManager(val restTemplate: RestTemplate, val casesProperties: CasesProperties) {
     fun getCountryInformation(country: String): CountryInformation {
         try {
-            val countryResponse: ResponseEntity<CountryInformation> = restTemplate.getForEntity("https://corona.lmao.ninja/countries/$country", CountryInformation::class.java)
+            val casesHost: String? = casesProperties.host ?: throw Exception("Cases host not defined")
+            val countryResponse: ResponseEntity<CountryInformation> = restTemplate.getForEntity("$casesHost/countries/$country", CountryInformation::class.java)
             if (!countryResponse.statusCode.is2xxSuccessful) {
                 throw HttpResponseException(countryResponse.statusCodeValue, "[${countryResponse.statusCode}] There was a problem while getting country $country: ${countryResponse.body}")
             }
@@ -30,7 +32,8 @@ class CasesManager(val restTemplate: RestTemplate) {
 
     fun getCountriesInformation(): Array<CountryInformation> {
         try {
-            val countriesResponse: ResponseEntity<Array<CountryInformation>> = restTemplate.getForEntity("https://corona.lmao.ninja/countries", Array<CountryInformation>::class.java)
+            val casesHost: String? = casesProperties.host ?: throw Exception("Cases host not defined")
+            val countriesResponse: ResponseEntity<Array<CountryInformation>> = restTemplate.getForEntity("$casesHost/countries", Array<CountryInformation>::class.java)
             if (!countriesResponse.statusCode.is2xxSuccessful) {
                 throw HttpResponseException(countriesResponse.statusCodeValue, "[${countriesResponse.statusCode}] There was a problem while getting countries: ${countriesResponse.body}")
             }

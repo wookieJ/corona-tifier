@@ -1,5 +1,9 @@
 jobs:
-  enabled: true
+  enabled: false
 
 cases:
+  host: "https://corona.lmao.ninja"
   cron: "0 0 8-23 ? * * *"
+
+facebook:
+  api-url: "https://graph.facebook.com/v6.0/me/messages"
