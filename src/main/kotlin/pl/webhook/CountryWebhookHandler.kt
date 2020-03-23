@@ -11,8 +11,8 @@ import pl.logger
 import pl.manager.CasesManager
 
 @Component
-class CountryWebhookHandler(val casesManager: CasesManager) : WebhookHandler {
-    override fun handle(webhookRequest: WebhookRequest): MessengerResponse {
+class CountryWebhookHandler(val casesManager: CasesManager) {
+    fun handle(webhookRequest: WebhookRequest): MessengerResponse {
         val recipientId: String = extractRecipientId(webhookRequest)
         val countryName: String = extractCountryName(webhookRequest)
         val messageContent: String = extractMessageContent(countryName)
@@ -35,7 +35,7 @@ class CountryWebhookHandler(val casesManager: CasesManager) : WebhookHandler {
     }
 
     private fun extractCountryName(webhookRequest: WebhookRequest): String {
-        val countryName = webhookRequest.queryResult?.parameters?.get(COUNTRY_PARAMETER_NAME) ?: Strings.EMPTY
+        val countryName = webhookRequest.queryResult?.parameters?.get("country") ?: Strings.EMPTY
         logger.info("Found country name $countryName")
         return countryName.toString()
     }
@@ -67,7 +67,7 @@ class CountryWebhookHandler(val casesManager: CasesManager) : WebhookHandler {
     companion object {
         private val logger by logger()
         private const val CONTEXT_NAME = "projects/sekretarztwo-jxstmq/agent/sessions"
-        private const val COUNTRY_PARAMETER_NAME = "projects/sekretarztwo-jxstmq/agent/sessions"
+        private const val COUNTRY_PARAMETER_NAME = "country"
         private const val RECIPIENT_ID_PARAMETER_NAME = "facebook_sender_id"
         private const val COUNTRY_CANNOT_TRANSLATE_MESSAGE = "Nie mam tego kraju w bazie jeszcze :( "
         private const val COUNTRY_NOT_FOUND_MESSAGE = "Podaj nazwę kraju mordo"

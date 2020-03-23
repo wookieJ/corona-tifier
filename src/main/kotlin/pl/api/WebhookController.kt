@@ -15,17 +15,27 @@ import pl.entity.WebhookRequest
 import pl.logger
 import pl.manager.MessagesManager
 import pl.webhook.CountryWebhookHandler
+import pl.webhook.DefaultWebhookHandler
 
 @RestController
 class WebhookController(
-    val environment: Environment, val countryWebhookHandler: CountryWebhookHandler, val messagesManager: MessagesManager
+    val environment: Environment,
+    val countryWebhookHandler: CountryWebhookHandler,
+    val defaultWebhookHandler: DefaultWebhookHandler,
+    val messagesManager: MessagesManager
 ) {
 
     @PostMapping(value = ["/webhook"], consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun webHookEvent(@RequestBody webhookRequest: WebhookRequest) {
         logger.info("POST /webhook")
-        val webhookResponse = countryWebhookHandler.handle(webhookRequest)
         val accessToken: String = environment[ACCESS_TOKEN_ENV_NAME] ?: throw Exception("Access token not found")
+        val parameters = webhookRequest.queryResult?.parameters?.keys ?: throw Exception("Parameters not found")
+
+        val webhookResponse = when {
+            "country" in parameters -> countryWebhookHandler.handle(webhookRequest)
+            else -> defaultWebhookHandler.handle(webhookRequest)
+        }
+
         messagesManager.sendMessage(accessToken, webhookResponse)
     }
 
