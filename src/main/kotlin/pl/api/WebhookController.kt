@@ -27,7 +27,7 @@ class WebhookController(
 
     @PostMapping(value = ["/webhook"], consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun webHookEvent(@RequestBody webhookRequest: WebhookRequest) {
-        logger.info("POST /webhook")
+        logger.debug("POST /webhook with body: $webhookRequest")
         val accessToken: String = environment[ACCESS_TOKEN_ENV_NAME] ?: throw Exception("Access token not found")
         val parameters = webhookRequest.queryResult?.parameters?.keys ?: throw Exception("Parameters not found")
 
