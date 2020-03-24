@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -43,15 +44,12 @@ class WebhookController(
     fun webHookEvent(@RequestBody webhookRequest: Any): ResponseEntity<String> {
         logger.info("POST /webhook with body: $webhookRequest")
         return ResponseEntity.ok("EVENT_RECEIVED")
-//        val accessToken: String = environment[ACCESS_TOKEN_ENV_NAME] ?: throw Exception("Access token not found")
-//        val parameters = webhookRequest.queryResult?.parameters?.keys ?: throw Exception("Parameters not found")
-//
-//        val webhookResponse = when {
-//            "country" in parameters -> countryWebhookHandler.handle(webhookRequest)
-//            else -> defaultWebhookHandler.handle(webhookRequest)
-//        }
-//
-//        messagesManager.sendMessage(accessToken, webhookResponse)
+    }
+
+    @GetMapping(value = ["/webhook"], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun webHookEventGet(): ResponseEntity<String> {
+        logger.info("GET /webhook")
+        return ResponseEntity.ok("EVENT_RECEIVED")
     }
 
     @ExceptionHandler
