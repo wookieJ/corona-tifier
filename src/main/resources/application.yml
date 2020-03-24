@@ -7,3 +7,8 @@ cases:
 
 facebook:
   api-url: "https://graph.facebook.com/v6.0/me/messages"
+
+server:
+  tomcat:
+    accesslog:
+      enabled: true

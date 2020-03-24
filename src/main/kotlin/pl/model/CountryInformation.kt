@@ -11,11 +11,11 @@ data class CountryInformation(
 ) {
     fun toHumanizedFormat(): String{
         return """
-            Liczba przypadków : ${this.cases}
-            Liczba śmierci    : ${this.deaths}
-            Dzisiaj przybyło  : ${this.todayCases}
-            Dzisiaj zmarło    : ${this.todayDeaths}
-            Uzdrowionych      : ${this.recovered}
+            Liczba przypadków : *${this.cases}*
+            Liczba śmierci : *${this.deaths}*
+            Dzisiaj przybyło : *${this.todayCases}*
+            Dzisiaj zmarło : *${this.todayDeaths}*
+            Uzdrowionych : *${this.recovered}*
             """.trimIndent()
     }
 }
