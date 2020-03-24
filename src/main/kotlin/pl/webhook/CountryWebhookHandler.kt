@@ -47,19 +47,37 @@ class CountryWebhookHandler(val casesManager: CasesManager) {
         return recipientId.toString()
     }
 
-    private fun mapToEnglishCountry(countryOriginal: String?): String? {
+    private fun mapToEnglishCountry(countryOriginal: String): String? {
+        val countryOriginalLowerCase = countryOriginal.toLowerCase()
         logger.info("Mapping country $countryOriginal")
-        return when (countryOriginal) {
-            "Chiny" -> "china"
-            "Polska" -> "poland"
-            "Polsce" -> "poland"
-            "Włochy" -> "italy"
-            "Włoszech" -> "italy"
-            "Hiszpania" -> "spain"
-            "Niemcy" -> "germany"
-            "Francja" -> "france"
-            "Japonia" -> "japan"
-            "Czechy" -> "czechia"
+        return when (countryOriginalLowerCase) {
+            "chiny" -> "china"
+            "polska" -> "poland"
+            "polsce" -> "poland"
+            "włochy" -> "italy"
+            "włoszech" -> "italy"
+            "hiszpania" -> "spain"
+            "niemcy" -> "germany"
+            "francja" -> "france"
+            "japonia" -> "japan"
+            "czechy" -> "czechia"
+            "usa" -> "usa"
+            "stany zjednoczone" -> "usa"
+            "ameryka" -> "usa"
+            "iran" -> "iran"
+            "szwajcaria" -> "switzerland"
+            "anglia" -> "uk"
+            "wielka brytania" -> "uk"
+            "holandia" -> "netherlands"
+            "austria" -> "austria"
+            "belgia" -> "belgium"
+            "kanada" -> "canada"
+            "portugalia" -> "portugal"
+            "szwecja" -> "sweden"
+            "australia" -> "australia"
+            "brazil" -> "brazil"
+            "turkey" -> "turkey"
+            "rosja" -> "russia"
             else -> null
         }
     }
@@ -67,7 +85,6 @@ class CountryWebhookHandler(val casesManager: CasesManager) {
     companion object {
         private val logger by logger()
         private const val CONTEXT_NAME = "projects/sekretarztwo-jxstmq/agent/sessions"
-        private const val COUNTRY_PARAMETER_NAME = "country"
         private const val RECIPIENT_ID_PARAMETER_NAME = "facebook_sender_id"
         private const val COUNTRY_CANNOT_TRANSLATE_MESSAGE = "Nie mam tego kraju w bazie jeszcze :( "
         private const val COUNTRY_NOT_FOUND_MESSAGE = "Podaj nazwę kraju mordo"
