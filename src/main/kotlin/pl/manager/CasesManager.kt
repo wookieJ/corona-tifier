@@ -14,7 +14,7 @@ import pl.logger
 class CasesManager(val restTemplate: RestTemplate, val casesProperties: CasesProperties) {
     fun getCountryInformation(country: String): CountryInformation {
         try {
-            val casesHost: String? = casesProperties.host ?: throw Exception("Cases host not defined")
+            val casesHost: String? = casesProperties.apiUrl ?: throw Exception("Cases apiUrl not defined")
             val countryResponse: ResponseEntity<CountryInformation> = restTemplate.getForEntity("$casesHost/countries/$country", CountryInformation::class.java)
             if (!countryResponse.statusCode.is2xxSuccessful) {
                 throw HttpResponseException(countryResponse.statusCodeValue, "[${countryResponse.statusCode}] There was a problem while getting country $country: ${countryResponse.body}")
@@ -32,7 +32,7 @@ class CasesManager(val restTemplate: RestTemplate, val casesProperties: CasesPro
 
     fun getCountriesInformation(): Array<CountryInformation> {
         try {
-            val casesHost: String? = casesProperties.host ?: throw Exception("Cases host not defined")
+            val casesHost: String? = casesProperties.apiUrl ?: throw Exception("Cases apiUrl not defined")
             val countriesResponse: ResponseEntity<Array<CountryInformation>> = restTemplate.getForEntity("$casesHost/countries", Array<CountryInformation>::class.java)
             if (!countriesResponse.statusCode.is2xxSuccessful) {
                 throw HttpResponseException(countriesResponse.statusCodeValue, "[${countriesResponse.statusCode}] There was a problem while getting countries: ${countriesResponse.body}")

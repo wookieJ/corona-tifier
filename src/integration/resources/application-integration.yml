@@ -1,0 +1,11 @@
+jobs:
+  enabled: false
+
+cases:
+  api-url: "http://localhost:8090"
+
+facebook:
+  api-url: "http://localhost:8090"
+
+jokes:
+  api-url: "http://localhost:8090"

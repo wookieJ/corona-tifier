@@ -2,16 +2,11 @@ jobs:
   enabled: false
 
 cases:
-  host: "https://corona.lmao.ninja"
+  api-url: "https://corona.lmao.ninja"
   cron: "0 0 8-23 ? * * *"
 
 facebook:
   api-url: "https://graph.facebook.com/v6.0/me/messages"
 
 jokes:
-  apiUrl: "http://piszsuchary.pl/losuj"
-
-server:
-  tomcat:
-    accesslog:
-      enabled: true
+  api-url: "http://piszsuchary.pl"

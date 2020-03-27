@@ -12,9 +12,9 @@ import pl.logger
 class JokesManager(val jokesProperties: JokesProperties) {
     fun getRandomJoke(): String {
         try {
-            Jsoup.connect(jokesProperties.apiUrl).get().run {
-                select("#trescGlowna").forEach { element ->
-                    val jokeBody = element.select(".kot_na_suchara a img").attr("alt")
+            Jsoup.connect("${jokesProperties.apiUrl}/losuj").get().run {
+                select("#trescGlowna .tekst .tekst-pokaz").forEach { element ->
+                    val jokeBody = element.text()
                     if (jokeBody.isNotEmpty()) {
                         return jokeBody
                     }
