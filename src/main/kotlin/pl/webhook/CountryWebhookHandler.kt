@@ -15,11 +15,11 @@ class CountryWebhookHandler(val casesManager: CasesManager) {
     fun handle(webhookRequest: WebhookRequest): MessengerResponse {
         val recipientId: String = extractRecipientId(webhookRequest)
         val countryName: String = extractCountryName(webhookRequest)
-        val messageContent: String = extractMessageContent(countryName)
+        val messageContent: String = createMessageContent(countryName)
         return MessengerResponse(Recipient(recipientId), Message(messageContent))
     }
 
-    private fun extractMessageContent(countryName: String): String {
+    private fun createMessageContent(countryName: String): String {
         return if (countryName.isNotEmpty()) {
             val countryNameTranslated: String? = mapToEnglishCountry(countryName)
             if (countryNameTranslated != null) {
@@ -52,6 +52,7 @@ class CountryWebhookHandler(val casesManager: CasesManager) {
         logger.info("Mapping country $countryOriginal")
         return when (countryOriginalLowerCase) {
             "chiny" -> "china"
+            "chinach" -> "china"
             "polska" -> "poland"
             "polsce" -> "poland"
             "włochy" -> "italy"

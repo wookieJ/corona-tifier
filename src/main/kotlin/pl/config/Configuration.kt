@@ -14,7 +14,7 @@ import pl.manager.CasesManager
 
 @Configuration
 @EnableScheduling
-@EnableConfigurationProperties(value = [CasesProperties::class, FacebookProperties::class])
+@EnableConfigurationProperties(value = [CasesProperties::class, FacebookProperties::class, JokesProperties::class])
 class Configuration {
 
     @Bean

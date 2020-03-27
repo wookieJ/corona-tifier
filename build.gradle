@@ -7,6 +7,7 @@ buildscript {
     ext.http_client_version = "4.5"
     ext.spring_security_version = "3.1.0.RELEASE"
     ext.google_actions_version = "1.0.0"
+    ext.jsoup_version = "1.13.1"
 
     repositories {
         jcenter()
@@ -46,6 +47,8 @@ dependencies {
     compile(group: "com.google.actions", name: "actions-on-google", version: "$google_actions_version") {
         exclude group: 'org.slf4j'
     }
+
+    compile group: "org.jsoup", name: "jsoup", version: "$jsoup_version"
 
     testCompile group: "org.springframework.boot", name: "spring-boot-starter-test", version: "$spring_boot_version"
     testCompile group: "org.mockito", name: "mockito-core", version: "$mockito_version"

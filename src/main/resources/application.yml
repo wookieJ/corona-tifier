@@ -8,6 +8,9 @@ cases:
 facebook:
   api-url: "https://graph.facebook.com/v6.0/me/messages"
 
+jokes:
+  apiUrl: "http://piszsuchary.pl/losuj"
+
 server:
   tomcat:
     accesslog:

@@ -16,12 +16,15 @@ import pl.logger
 import pl.manager.MessagesManager
 import pl.webhook.CountryWebhookHandler
 import pl.webhook.DefaultWebhookHandler
+import pl.webhook.JokeWebhookHandler
+import kotlin.math.log
 
 @RestController
 class WebhookController(
     val environment: Environment,
     val countryWebhookHandler: CountryWebhookHandler,
     val defaultWebhookHandler: DefaultWebhookHandler,
+    val jokeWebhookHandler: JokeWebhookHandler,
     val messagesManager: MessagesManager
 ) {
 
@@ -29,10 +32,12 @@ class WebhookController(
     fun webHookEvent(@RequestBody webhookRequest: WebhookRequest) {
         logger.debug("POST /webhook with body: $webhookRequest")
         val accessToken: String = environment[ACCESS_TOKEN_ENV_NAME] ?: throw Exception("Access token not found")
-        val parameters = webhookRequest.queryResult?.parameters?.keys ?: throw Exception("Parameters not found")
+        val intentType = webhookRequest.queryResult?.intent?.displayName?.toLowerCase() ?: throw Exception("Intent type not recognised")
 
-        val webhookResponse = when {
-            "country" in parameters -> countryWebhookHandler.handle(webhookRequest)
+        logger.info("Intent type $intentType found")
+        val webhookResponse = when (intentType) {
+            "country cases" -> countryWebhookHandler.handle(webhookRequest)
+            "joke" -> jokeWebhookHandler.handle(webhookRequest)
             else -> defaultWebhookHandler.handle(webhookRequest)
         }
 
