@@ -71,7 +71,7 @@ class JokesResponses {
             
                             <div class="tekst">
                                 <span class="tekst-click" id="odkryj-2907" style="display: inline;">Pokaż sam tekst do skopiowania</span>
-                                <pre class="tekst-pokaz" id="ukryty-2907">Knock! Knock! Who’s there? Scold. Scold who? Scold outside, let me in!</pre>
+                                <pre class="tekst-pokaz" id="ukryty-2907">Knock! Knock! Who’s there? Scold. Scold who? Scold outside, let me in! | PiszSuchary.pl</pre>
                             </div>
             
                             <div class="glosowanie" id="oceny-glosowanie-2907">

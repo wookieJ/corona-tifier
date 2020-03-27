@@ -16,7 +16,7 @@ class JokesManager(val jokesProperties: JokesProperties) {
                 select("#trescGlowna .tekst .tekst-pokaz").forEach { element ->
                     val jokeBody = element.text()
                     if (jokeBody.isNotEmpty()) {
-                        return jokeBody
+                        return jokeBody.removeSuffix(" | PiszSuchary.pl")
                     }
                 }
                 return JOKE_NOT_FOUND_MESSAGE
