@@ -1,4 +1,6 @@
 # 🦠 corona-tifier
+![CircleCI](https://img.shields.io/circleci/build/gh/wookieJ/corona-tifier?style=plastic)
+
 Create your own facebook messenger 💬 assistant which understand polish 🇵🇱  language.
 
 <p align="center">
