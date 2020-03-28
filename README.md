@@ -1,18 +1,22 @@
 # 🦠 corona-tifier
-Create your own facebook messenger 💬 assistant 🤖 which understand 🇵🇱 polish language also.
+Create your own facebook messenger 💬 assistant which understand polish 🇵🇱  language.
 
-<img width="300" src="../master/screenshots/screen.PNG">
+<p align="center">
+ <img width="400" src="../master/screenshots/layout.png">
+</p>
 
 ## How to start
 
-### Setup Facebook Page <img width="60" src="../master/screenshots/facebook.png">
+### Setup Facebook Page <img width="45" src="../master/screenshots/facebook.png">
 Go to https://developers.facebook.com/ and sign with your Facebook credentials.
 Click **Get Started** button and follow instructions to **Add a New App**.
 
 After your app is created, go to **Dashboard** tab on the menu left. Find messenger and click **Set Up**.
 Firstly you have to *"Create a new page"*. 
 
-<img width="600" src="../master/screenshots/createPage.png">
+<p align="center">
+ <img width="800" src="../master/screenshots/createPage.png">
+</p>
 
 This will take you to facebook.com where you have to
 create your facebook page. Choose *Community or public figure*. 
@@ -20,9 +24,11 @@ create your facebook page. Choose *Community or public figure*.
 Once you have your page created go back to [Facebook Developer Portal](https://developers.facebook.com/) and refresh page.
 You should find **Token Generation** module. Select your page and generate your **page access token**.
 
-<img width="600" src="../master/screenshots/token.png">
+<p align="center">
+ <img width="800" src="../master/screenshots/token.png">
+</p>
 
-### Configure Dialogflow <img width="60" src="../master/screenshots/dialogflow.png">
+### Configure Dialogflow <img width="45" src="../master/screenshots/dialogflow.png">
 
 Go to https://dialogflow.com/ and sign in with your google credentials. Click on **Go to console**
 to create your first agent. Click **Create Agent** and fill in the details. Give your Agent a name. 
@@ -30,19 +36,25 @@ It can be the same name as your Facebook Page.
 
 When your agent is created, it will automatically add two Intents. Click on **Default Welcome Intent** to edit it
 
-<img width="600" src="../master/screenshots/intent.png">
+<p align="center">
+ <img width="800" src="../master/screenshots/intent.png">
+</p>
 
 In the Events section, add the event **FACEBOOK_WELCOME**. This enables your bot to recognize user when he 
 interacts with the bot for the first time.
 
-<img width="600" src="../master/screenshots/fbWelcome.png">
+<p align="center">
+ <img width="800" src="../master/screenshots/fbWelcome.png">
+</p>
 
 Scroll down the page and delete the default responses by clicking the trash icon, as we will be responding to 
 the user from our code.
 
 Scroll down further and enable **Fulfillment**. This makes sure that all requests are routed through our chatbot function
 
-<img width="600" src="../master/screenshots/fulfillment.png">
+<p align="center">
+ <img width="800" src="../master/screenshots/fulfillment.png">
+</p>
 
 Next, we need to connect the Facebook Messenger to Dialogflow. Click on **Integrations**.
 
@@ -66,9 +78,11 @@ The Privacy Policy URL can be any valid URL (e.g. https://google.com/).
 
 Save changes and Toggle the status button On to make your app go live.
 
-<img width="600" src="../master/screenshots/live.png">
+<p align="center">
+ <img width="500" src="../master/screenshots/live.png">
+</p>
 
-### Setup your App <img width="60" src="../master/screenshots/kotlin.png">
+### Setup your App <img width="25" src="../master/screenshots/kotlin.png">
 
 Deploy your app (e.g. https://heroku.com). Add your facebook **Page Access Token** to your server environment variable.
 
@@ -91,4 +105,4 @@ https://your-app-host/webhook
 We are almost done. All we need to do now, is to enable our bot on the [Facebook Developer Portal](https://developers.facebook.com/). 
 Go to your Facebook page and click on Add a Button. Choose Send Message, complete the details and save.
 
-**Congratulations!** 🎉 🎉 🎉 You have a personal chatbot now 🤖. 
+### **Congratulations!** 🎉 🎉 🎉 You have a personal chatbot now 🤖
