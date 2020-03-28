@@ -25,8 +25,5 @@ jobs:
           name: Integration Tests
           command: gradle integrationTest
       - run:
-          name: Generate Code Coverage Report
-          command: gradle jacocoTestReport
-      - run:
-          name: Upload Code Coverage
-          command: bash <(curl -s https://codecov.io/bash)
+          name: Code Coverage Report
+          command: gradle jacocoTestReport && bash <(curl -s https://codecov.io/bash)
