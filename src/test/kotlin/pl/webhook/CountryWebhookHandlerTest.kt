@@ -13,13 +13,28 @@ internal class CountryWebhookHandlerTest {
     @Test
     fun `Should map country name`() {
         // given
-        val name = "Polska"
+        val countries: List<String> = listOf(
+            "chiny", "chinach", "polska", "polsce", "włochy", "włoszech", "hiszpania", "niemcy", "francja", "japonia", "czechy", "usa"
+        )
 
         // when
-        val translatedName = countryWebhookHandler.mapToEnglishCountry(name)
+        val translations = countries
+            .map { countryWebhookHandler.mapToEnglishCountry(it) }
+            .toList()
 
         // then
-        assertThat(translatedName).isEqualTo("poland")
+        assertThat(translations[0]).isEqualTo("china")
+        assertThat(translations[1]).isEqualTo("china")
+        assertThat(translations[2]).isEqualTo("poland")
+        assertThat(translations[3]).isEqualTo("poland")
+        assertThat(translations[4]).isEqualTo("italy")
+        assertThat(translations[5]).isEqualTo("italy")
+        assertThat(translations[6]).isEqualTo("spain")
+        assertThat(translations[7]).isEqualTo("germany")
+        assertThat(translations[8]).isEqualTo("france")
+        assertThat(translations[9]).isEqualTo("japan")
+        assertThat(translations[10]).isEqualTo("czechia")
+        assertThat(translations[11]).isEqualTo("usa")
     }
 
     @Test
