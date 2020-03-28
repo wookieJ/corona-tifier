@@ -19,7 +19,7 @@ class CountryWebhookHandler(val casesManager: CasesManager) {
         return MessengerResponse(Recipient(recipientId), Message(messageContent))
     }
 
-    private fun createMessageContent(countryName: String): String {
+    fun createMessageContent(countryName: String): String {
         return if (countryName.isNotEmpty()) {
             val countryNameTranslated: String? = mapToEnglishCountry(countryName)
             if (countryNameTranslated != null) {
@@ -34,20 +34,20 @@ class CountryWebhookHandler(val casesManager: CasesManager) {
         }
     }
 
-    private fun extractCountryName(webhookRequest: WebhookRequest): String {
+    fun extractCountryName(webhookRequest: WebhookRequest): String {
         val countryName = webhookRequest.queryResult?.parameters?.get("country") ?: Strings.EMPTY
         logger.info("Found country name $countryName")
         return countryName.toString()
     }
 
-    private fun extractRecipientId(webhookRequest: WebhookRequest): String {
+    fun extractRecipientId(webhookRequest: WebhookRequest): String {
         val context: Context = webhookRequest.queryResult?.outputContexts?.first { it.name?.contains(CONTEXT_NAME)!! } ?: throw Exception("Context not found")
         val recipientId: Any? = context.parameters?.get(RECIPIENT_ID_PARAMETER_NAME) ?: throw Exception("Recipient ID not found")
         logger.info("Found recipientId: $recipientId")
         return recipientId.toString()
     }
 
-    private fun mapToEnglishCountry(countryOriginal: String): String? {
+    fun mapToEnglishCountry(countryOriginal: String): String? {
         val countryOriginalLowerCase = countryOriginal.toLowerCase()
         logger.info("Mapping country $countryOriginal")
         return when (countryOriginalLowerCase) {

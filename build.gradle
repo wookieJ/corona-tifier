@@ -25,6 +25,7 @@ buildscript {
 
 apply plugin: "kotlin"
 apply plugin: "groovy"
+apply plugin: "jacoco"
 apply plugin: "kotlin-spring"
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
@@ -83,7 +84,32 @@ task integrationTest(type: Test) {
     description = "Run integartion tests"
     testClassesDirs = sourceSets.integration.output.classesDirs
     classpath = sourceSets.integration.runtimeClasspath
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+test {
+    group = "verification"
+    description = "Run unit tests"
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
 
 check.dependsOn integrationTest
 check.dependsOn test
+
+jacoco {
+    toolVersion = "0.8.5"
+}
