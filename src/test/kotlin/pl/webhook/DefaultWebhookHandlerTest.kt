@@ -21,7 +21,7 @@ internal class DefaultWebhookHandlerTest {
             outputContexts = listOf(
                 Context(
                     name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
-                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "recipient_id"
                 )
                 )
             )
@@ -32,7 +32,7 @@ internal class DefaultWebhookHandlerTest {
         val messengerResponse: MessengerResponse = defaultWebhookHandler.handle(webhookRequest)
 
         // then
-        assertThat(messengerResponse.recipient.id).isEqualTo("user_id")
+        assertThat(messengerResponse.recipient.id).isEqualTo("recipient_id")
         assertThat(messengerResponse.message.text).isEqualTo(DefaultWebhookHandler.DEFAULT_MESSAGE)
     }
 }
