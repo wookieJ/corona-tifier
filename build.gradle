@@ -101,6 +101,7 @@ test {
 }
 
 jacocoTestReport {
+    getExecutionData().setFrom(fileTree(buildDir).include("/jacoco/*.exec"))
     reports {
         xml.enabled true
         html.enabled false
