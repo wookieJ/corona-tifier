@@ -10,7 +10,8 @@ import pl.logger
 
 @Component
 class MessagesManager(
-    val restTemplate: RestTemplate, val facebookProperties: FacebookProperties
+    val restTemplate: RestTemplate,
+    val facebookProperties: FacebookProperties
 ) {
     fun sendMessage(accessToken: String, messengerResponse: MessengerResponse) {
         logger.info("Sending message to ${messengerResponse.recipient}")

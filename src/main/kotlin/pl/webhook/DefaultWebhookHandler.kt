@@ -8,10 +8,10 @@ import pl.entity.WebhookRequest
 import pl.logger
 
 @Component
-class DefaultWebhookHandler {
+class DefaultWebhookHandler : WebhookCommonExtractor() {
     fun handle(webhookRequest: WebhookRequest): MessengerResponse {
         logger.info("Handling default intent")
-        val recipientId: String = WebhookCommonExtractor.extractRecipientId(webhookRequest)
+        val recipientId: String = extractRecipientId(webhookRequest)
         val messageContent = DEFAULT_MESSAGE
         return MessengerResponse(Recipient(recipientId), Message(messageContent))
     }

@@ -50,18 +50,43 @@ internal class CountryWebhookHandlerTest {
     }
 
     @Test
+    fun `Should return empty string if parameters not found in webhook request`() {
+        // given
+        val queryResult = QueryResult()
+        val webhookRequest = WebhookRequest(null, queryResult, null, null)
+
+        // when
+        val extractedCountryName: String = countryWebhookHandler.extractCountryName(webhookRequest)
+
+        // then
+        assertThat(extractedCountryName).isEmpty()
+    }
+
+    @Test
+    fun `Should return empty string if query results not found in webhook request`() {
+        // given
+        val webhookRequest = WebhookRequest(null, null, null, null)
+
+        // when
+        val extractedCountryName: String = countryWebhookHandler.extractCountryName(webhookRequest)
+
+        // then
+        assertThat(extractedCountryName).isEmpty()
+    }
+
+    @Test
     fun `Should create message response with country cases from webhook request`() {
         // given
         val queryResult = QueryResult(
             outputContexts = listOf(
                 Context(
                     name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
-                        WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
-                    )
+                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                )
                 )
             ), parameters = mapOf(
-                CountryWebhookHandler.COUNTRY_PARAMETER_NAME to "Polska"
-            )
+            CountryWebhookHandler.COUNTRY_PARAMETER_NAME to "Polska"
+        )
         )
         val webhookRequest = WebhookRequest(null, queryResult, null, null)
         `when`(casesManager.getCountryInformation("poland")).thenReturn(
@@ -94,8 +119,8 @@ internal class CountryWebhookHandlerTest {
             outputContexts = listOf(
                 Context(
                     name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
-                        WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
-                    )
+                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                )
                 )
             ), parameters = mapOf()
         )
@@ -116,12 +141,12 @@ internal class CountryWebhookHandlerTest {
             outputContexts = listOf(
                 Context(
                     name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
-                        WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
-                    )
+                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                )
                 )
             ), parameters = mapOf(
-                CountryWebhookHandler.COUNTRY_PARAMETER_NAME to "NotExistingCountry"
-            )
+            CountryWebhookHandler.COUNTRY_PARAMETER_NAME to "NotExistingCountry"
+        )
         )
         val webhookRequest = WebhookRequest(null, queryResult, null, null)
 

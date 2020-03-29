@@ -9,10 +9,10 @@ import pl.logger
 import pl.manager.JokesManager
 
 @Component
-class JokeWebhookHandler(val jokesManager: JokesManager) {
+class JokeWebhookHandler(private val jokesManager: JokesManager) : WebhookCommonExtractor() {
     fun handle(webhookRequest: WebhookRequest): MessengerResponse {
         logger.info("Handling joke intent")
-        val recipientId: String = WebhookCommonExtractor.extractRecipientId(webhookRequest)
+        val recipientId: String =  extractRecipientId(webhookRequest)
         val messageContent: String = createMessageContent()
         return MessengerResponse(Recipient(recipientId), Message(messageContent))
     }

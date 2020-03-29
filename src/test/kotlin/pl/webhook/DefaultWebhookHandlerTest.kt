@@ -21,8 +21,8 @@ internal class DefaultWebhookHandlerTest {
             outputContexts = listOf(
                 Context(
                     name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
-                        WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
-                    )
+                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                )
                 )
             )
         )

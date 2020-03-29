@@ -12,7 +12,7 @@ import pl.manager.JokesManager
 
 internal class JokeWebhookHandlerTest {
 
-    private val jokesManager = mock(JokesManager::class.java)
+    private val jokesManager: JokesManager = mock(JokesManager::class.java)
     private val jokeWebhookHandler = JokeWebhookHandler(jokesManager)
 
     @Test
@@ -21,8 +21,7 @@ internal class JokeWebhookHandlerTest {
         val queryResult = QueryResult(
             outputContexts = listOf(
                 Context(
-                    name = WebhookCommonExtractor.CONTEXT_NAME,
-                    parameters = mapOf(
+                    name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
                         WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
                     )
                 )

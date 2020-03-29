@@ -12,14 +12,16 @@ import pl.translation.Translator
 
 @Component
 class CountryWebhookHandler(
-    val casesManager: CasesManager, val translator: Translator
-) {
+    private val casesManager: CasesManager, private val translator: Translator
+) : WebhookCommonExtractor() {
     fun handle(webhookRequest: WebhookRequest): MessengerResponse {
         logger.info("Handling country intent")
-        val recipientId: String = WebhookCommonExtractor.extractRecipientId(webhookRequest)
+        val recipientId: String = extractRecipientId(webhookRequest)
         val countryName: String = extractCountryName(webhookRequest)
         val messageContent: String = createMessageContent(countryName)
-        return MessengerResponse(Recipient(recipientId), Message(messageContent))
+        return MessengerResponse(
+            Recipient(recipientId), Message(messageContent)
+        )
     }
 
     fun createMessageContent(countryName: String): String {

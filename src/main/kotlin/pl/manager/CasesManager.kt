@@ -11,7 +11,10 @@ import pl.model.CountryInformation
 import pl.logger
 
 @Component
-class CasesManager(val restTemplate: RestTemplate, val casesProperties: CasesProperties) {
+class CasesManager(
+    val restTemplate: RestTemplate,
+    val casesProperties: CasesProperties
+) {
     fun getCountryInformation(country: String): CountryInformation {
         try {
             val casesHost: String? = casesProperties.apiUrl ?: throw Exception("Cases apiUrl not defined")

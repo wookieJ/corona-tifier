@@ -11,9 +11,9 @@ internal class TranslatorTest {
     fun `Should map country name`() {
         // given
         val countries: List<String> = listOf(
-            "chiny", "chinach", "polska", "polsce", "włochy", "włoszech", "hiszpania", "niemcy", "francja", "japonia", "czechy", "usa",
-            "stany zjednoczone", "ameryka", "iran", "szwajcaria", "anglia", "wielka brytania", "holandia", "austria", "belgia",
-            "kanada", "portugalia", "szwecja", "australia", "brazylia", "turcja", "rosja"
+            "chiny", "chinach", "polska", "polsce", "włochy", "włoszech", "hiszpania", "niemcy", "francja", "japonia", "czechy", "usa", "stany zjednoczone",
+            "ameryka", "iran", "szwajcaria", "anglia", "wielka brytania", "holandia", "austria", "belgia", "kanada", "portugalia", "szwecja", "australia",
+            "brazylia", "turcja", "rosja"
         )
 
         // when
