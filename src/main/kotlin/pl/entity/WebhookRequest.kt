@@ -1,82 +1,83 @@
 package pl.entity
 
 data class WebhookRequest(
-    var originalDetectIntentRequest: OriginalDetectIntentRequest?,
-    var queryResult: QueryResult?,
-    var responseId: String?,
+    var originalDetectIntentRequest: OriginalDetectIntentRequest? = null,
+    var queryResult: QueryResult? = null,
+    var responseId: String? = null,
     var session: String?
 )
 
 data class QueryResult(
-    var action: String?,
-    var allRequiredParamsPresent: Boolean?,
-    var diagnosticInfo: Map<String, Any>?,
-    var fulfillmentMessages: List<Any>?,
-    var fulfillmentText: String?,
-    var intent: Intent?,
-    var intentDetectionConfidence: Float?,
-    var languageCode: String?,
-    var outputContexts: List<Context>?,
-    var parameters: Map<String, Any>?,
-    var queryText: String?,
-    var speechRecognitionConfidence: Float?,
-    var webhookPayload: Map<String, Any>?,
-    var webhookSource: String?
+    var action: String? = null,
+    var allRequiredParamsPresent: Boolean? = null,
+    var diagnosticInfo: Map<String, Any>? = null,
+    var fulfillmentMessages: List<Any>? = null,
+    var fulfillmentText: String? = null,
+    var intent: Intent? = null,
+    var intentDetectionConfidence: Float? = null,
+    var languageCode: String? = null,
+    var outputContexts: List<Context>? = null,
+    var parameters: Map<String, Any>? = null,
+    var queryText: String? = null,
+    var speechRecognitionConfidence: Float? = null,
+    var webhookPayload: Map<String, Any>? = null,
+    var webhookSource: String? = null
 )
 
 data class Context(
-    var lifespanCount: Int?,
-    var name: String?,
-    var parameters: Map<String, Any>?
+    var lifespanCount: Int? = null,
+    var name: String? = null,
+    var parameters: Map<String, Any>? = null
 )
 
 data class Intent(
-    var action: String?,
-    var defaultResponsePlatforms: List<String>?,
-    var displayName: String?,
-    var events: List<String>?,
-    var followupIntentInfo: List<Any>?,
-    var inputContextNames: List<String>?,
-    var isFallback: Boolean?,
-    var messages: List<IntentMessage>?,
-    var mlDisabled: Boolean?,
-    var name: String?,
-    var outputContexts: List<Context>?,
-    var parameters: List<IntentParameter>?,
-    var parentFollowupIntentName: String?,
-    var priority: Int?,
-    var resetContexts: Boolean?,
-    var rootFollowupIntentName: String?,
-    var trainingPhrases: List<Any>?,
-    var webhookState: String?
+    var action: String? = null,
+    var defaultResponsePlatforms: List<String>? = null,
+    var displayName: String? = null,
+    var events: List<String>? = null,
+    var followupIntentInfo: List<Any>? = null,
+    var inputContextNames: List<String>? = null,
+    var isFallback: Boolean? = null,
+    var messages: List<IntentMessage>? = null,
+    var mlDisabled: Boolean? = null,
+    var name: String? = null,
+    var outputContexts: List<Context>? = null,
+    var parameters: List<IntentParameter>? = null,
+    var parentFollowupIntentName: String? = null,
+    var priority: Int? = null,
+    var resetContexts: Boolean? = null,
+    var rootFollowupIntentName: String? = null,
+    var trainingPhrases: List<Any>? = null,
+    var webhookState: String? = null
 )
 
 data class IntentParameter(
-    var defaultValue: String?,
-    var displayName: String?,
-    var entityTypeDisplayName: String?,
-    var isList: Boolean?,
-    var mandatory: Boolean?,
-    var name: String?,
-    var prompts: List<String>?,
-    var value: String?
+    var defaultValue: String? = null,
+    var displayName: String? = null,
+    var entityTypeDisplayName: String? = null,
+    var isList: Boolean? = null,
+    var mandatory: Boolean? = null,
+    var name: String? = null,
+    var prompts: List<String>? = null,
+    var value: String? = null
 )
 
 data class IntentMessage(
-    var basicCard: Any?,
-    var card: Any?,
-    var carouselSelect: Any?,
-    var image: Any?,
-    var linkOutSuggestion: Any?,
-    var listSelect: Any?,
-    var payload: Map<String, Any>?,
-    var platform: String?,
-    var quickReplies: Any?,
-    var simpleResponses: Any?,
-    var suggestions: Any?,
-    var text: Any?
+    var basicCard: Any? = null,
+    var card: Any? = null,
+    var carouselSelect: Any? = null,
+    var image: Any? = null,
+    var linkOutSuggestion: Any? = null,
+    var listSelect: Any? = null,
+    var payload: Map<String, Any>? = null,
+    var platform: String? = null,
+    var quickReplies: Any? = null,
+    var simpleResponses: Any? = null,
+    var suggestions: Any? = null,
+    var text: Any? = null
 )
 
 data class OriginalDetectIntentRequest(
-    var payload: Map<String, Any>?, var source: String?
+    var payload: Map<String, Any>? = null,
+    var source: String? = null
 )
