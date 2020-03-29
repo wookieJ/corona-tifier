@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import pl.entity.Context
-import pl.entity.MessengerResponse
+import pl.entity.MessageRequest
 import pl.entity.QueryResult
 import pl.entity.WebhookRequest
 import pl.manager.JokesManager
@@ -31,10 +31,10 @@ internal class JokeWebhookHandlerTest {
         `when`(jokesManager.getRandomJoke()).thenReturn("Very funny joke")
 
         // when
-        val messengerResponse: MessengerResponse = jokeWebhookHandler.handle(webhookRequest)
+        val messageRequest: MessageRequest = jokeWebhookHandler.handle(webhookRequest)
 
         // then
-        assertThat(messengerResponse.recipient.id).isEqualTo("user_id")
-        assertThat(messengerResponse.message.text).isEqualTo("Very funny joke")
+        assertThat(messageRequest.recipient.id).isEqualTo("user_id")
+        assertThat(messageRequest.message.text).isEqualTo("Very funny joke")
     }
 }

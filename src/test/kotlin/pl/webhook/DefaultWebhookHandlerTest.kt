@@ -2,13 +2,10 @@ package pl.webhook
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
 import pl.entity.Context
-import pl.entity.MessengerResponse
+import pl.entity.MessageRequest
 import pl.entity.QueryResult
 import pl.entity.WebhookRequest
-import pl.manager.JokesManager
 
 internal class DefaultWebhookHandlerTest {
 
@@ -29,10 +26,10 @@ internal class DefaultWebhookHandlerTest {
         val webhookRequest = WebhookRequest(null, queryResult, null, null)
 
         // when
-        val messengerResponse: MessengerResponse = defaultWebhookHandler.handle(webhookRequest)
+        val messageRequest: MessageRequest = defaultWebhookHandler.handle(webhookRequest)
 
         // then
-        assertThat(messengerResponse.recipient.id).isEqualTo("recipient_id")
-        assertThat(messengerResponse.message.text).isEqualTo(DefaultWebhookHandler.DEFAULT_MESSAGE)
+        assertThat(messageRequest.recipient.id).isEqualTo("recipient_id")
+        assertThat(messageRequest.message.text).isEqualTo(DefaultWebhookHandler.DEFAULT_MESSAGE)
     }
 }

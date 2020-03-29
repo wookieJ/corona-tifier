@@ -1,6 +1,6 @@
 package pl.entity
 
-data class MessengerResponse(
+data class MessageRequest(
     var recipient: Recipient,
     var message: Message
 )

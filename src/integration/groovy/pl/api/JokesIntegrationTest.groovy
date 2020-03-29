@@ -27,9 +27,9 @@ class JokesIntegrationTest extends WireMockIntegrationSpec {
         JokesStubs.getRandomJokeStub(JokesResponses.emptyJokeHtml())
 
         when:
-        def joke = jokesManager.getRandomJoke()
+        jokesManager.getRandomJoke()
 
         then:
-        joke == jokesManager.JOKE_NOT_FOUND_MESSAGE
+        thrown(Exception)
     }
 }

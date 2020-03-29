@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import pl.entity.Context
-import pl.entity.MessengerResponse
+import pl.entity.MessageRequest
 import pl.entity.QueryResult
 import pl.entity.WebhookRequest
 import pl.manager.CasesManager
@@ -97,11 +97,11 @@ internal class CountryWebhookHandlerTest {
         `when`(translator.mapToEnglishCountry("Polska")).thenReturn("poland")
 
         // when
-        val messengerResponse: MessengerResponse = countryWebhookHandler.handle(webhookRequest)
+        val messageRequest: MessageRequest = countryWebhookHandler.handle(webhookRequest)
 
         // then
-        assertThat(messengerResponse.recipient.id).isEqualTo("user_id")
-        assertThat(messengerResponse.message.text).isEqualTo(
+        assertThat(messageRequest.recipient.id).isEqualTo("user_id")
+        assertThat(messageRequest.message.text).isEqualTo(
             """
             Liczba przypadków : *1000*
             Liczba śmierci : *10*
@@ -127,11 +127,11 @@ internal class CountryWebhookHandlerTest {
         val webhookRequest = WebhookRequest(null, queryResult, null, null)
 
         // when
-        val messengerResponse: MessengerResponse = countryWebhookHandler.handle(webhookRequest)
+        val messageRequest: MessageRequest = countryWebhookHandler.handle(webhookRequest)
 
         // then
-        assertThat(messengerResponse.recipient.id).isEqualTo("user_id")
-        assertThat(messengerResponse.message.text).isEqualTo(CountryWebhookHandler.COUNTRY_NOT_FOUND_MESSAGE)
+        assertThat(messageRequest.recipient.id).isEqualTo("user_id")
+        assertThat(messageRequest.message.text).isEqualTo(CountryWebhookHandler.COUNTRY_NOT_FOUND_MESSAGE)
     }
 
     @Test
@@ -151,10 +151,10 @@ internal class CountryWebhookHandlerTest {
         val webhookRequest = WebhookRequest(null, queryResult, null, null)
 
         // when
-        val messengerResponse: MessengerResponse = countryWebhookHandler.handle(webhookRequest)
+        val messageRequest: MessageRequest = countryWebhookHandler.handle(webhookRequest)
 
         // then
-        assertThat(messengerResponse.recipient.id).isEqualTo("user_id")
-        assertThat(messengerResponse.message.text).isEqualTo(CountryWebhookHandler.COUNTRY_CANNOT_TRANSLATE_MESSAGE)
+        assertThat(messageRequest.recipient.id).isEqualTo("user_id")
+        assertThat(messageRequest.message.text).isEqualTo(CountryWebhookHandler.COUNTRY_CANNOT_TRANSLATE_MESSAGE)
     }
 }

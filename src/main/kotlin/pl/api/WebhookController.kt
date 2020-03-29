@@ -10,14 +10,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import pl.entity.MessengerResponse
 import pl.entity.WebhookRequest
 import pl.logger
 import pl.manager.MessagesManager
 import pl.webhook.CountryWebhookHandler
 import pl.webhook.DefaultWebhookHandler
 import pl.webhook.JokeWebhookHandler
-import kotlin.math.log
 
 @RestController
 class WebhookController(

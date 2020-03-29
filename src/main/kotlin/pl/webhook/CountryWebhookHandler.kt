@@ -3,7 +3,7 @@ package pl.webhook
 import org.apache.logging.log4j.util.Strings
 import org.springframework.stereotype.Component
 import pl.entity.Message
-import pl.entity.MessengerResponse
+import pl.entity.MessageRequest
 import pl.entity.Recipient
 import pl.entity.WebhookRequest
 import pl.logger
@@ -14,12 +14,12 @@ import pl.translation.Translator
 class CountryWebhookHandler(
     private val casesManager: CasesManager, private val translator: Translator
 ) : WebhookCommonExtractor() {
-    fun handle(webhookRequest: WebhookRequest): MessengerResponse {
+    fun handle(webhookRequest: WebhookRequest): MessageRequest {
         logger.info("Handling country intent")
         val recipientId: String = extractRecipientId(webhookRequest)
         val countryName: String = extractCountryName(webhookRequest)
         val messageContent: String = createMessageContent(countryName)
-        return MessengerResponse(
+        return MessageRequest(
             Recipient(recipientId), Message(messageContent)
         )
     }
