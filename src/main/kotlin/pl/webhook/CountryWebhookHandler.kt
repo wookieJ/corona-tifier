@@ -12,8 +12,7 @@ import pl.translation.Translator
 
 @Component
 class CountryWebhookHandler(
-    val casesManager: CasesManager,
-    val translator: Translator
+    val casesManager: CasesManager, val translator: Translator
 ) {
     fun handle(webhookRequest: WebhookRequest): MessengerResponse {
         logger.info("Handling country intent")
@@ -27,9 +26,7 @@ class CountryWebhookHandler(
         return if (countryName.isNotEmpty()) {
             val countryNameTranslated: String? = translator.mapToEnglishCountry(countryName)
             if (countryNameTranslated != null) {
-                casesManager
-                    .getCountryInformation(countryNameTranslated)
-                    .toHumanizedFormat()
+                casesManager.getCountryInformation(countryNameTranslated).toHumanizedFormat()
             } else {
                 COUNTRY_CANNOT_TRANSLATE_MESSAGE
             }
@@ -39,14 +36,15 @@ class CountryWebhookHandler(
     }
 
     fun extractCountryName(webhookRequest: WebhookRequest): String {
-        val countryName = webhookRequest.queryResult?.parameters?.get("country") ?: Strings.EMPTY
+        val countryName = webhookRequest.queryResult?.parameters?.get(COUNTRY_PARAMETER_NAME) ?: return Strings.EMPTY
         logger.info("Found country name $countryName")
         return countryName.toString()
     }
 
     companion object {
         private val logger by logger()
-        private const val COUNTRY_CANNOT_TRANSLATE_MESSAGE = "Nie mam tego kraju w bazie jeszcze :( "
-        private const val COUNTRY_NOT_FOUND_MESSAGE = "Podaj nazwę kraju mordo"
+        const val COUNTRY_CANNOT_TRANSLATE_MESSAGE = "Nie mam tego kraju w bazie jeszcze :( "
+        const val COUNTRY_NOT_FOUND_MESSAGE = "Podaj nazwę kraju mordo"
+        const val COUNTRY_PARAMETER_NAME = "country"
     }
 }

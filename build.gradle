@@ -106,6 +106,16 @@ jacocoTestReport {
         xml.enabled true
         html.enabled false
     }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(
+                    dir: it,
+                    exclude: [
+                            'model/**',
+                    ]
+            )
+        })
+    }
 }
 
 check.dependsOn integrationTest

@@ -12,11 +12,12 @@ class DefaultWebhookHandler {
     fun handle(webhookRequest: WebhookRequest): MessengerResponse {
         logger.info("Handling default intent")
         val recipientId: String = WebhookCommonExtractor.extractRecipientId(webhookRequest)
-        val messageContent = "Nie rozumiem"
+        val messageContent = DEFAULT_MESSAGE
         return MessengerResponse(Recipient(recipientId), Message(messageContent))
     }
 
     companion object {
         private val logger by logger()
+        const val DEFAULT_MESSAGE = "Nie rozumiem"
     }
 }

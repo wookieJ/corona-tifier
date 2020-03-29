@@ -1,5 +1,5 @@
 # 🦠 corona-tifier
-![CircleCI](https://img.shields.io/circleci/build/gh/wookieJ/corona-tifier?style=plastic)
+[![CircleCI](https://img.shields.io/circleci/build/gh/wookieJ/corona-tifier?style=plastic)](https://app.circleci.com/pipelines/github/wookieJ/corona-tifier)
 [![codecov](https://codecov.io/gh/wookieJ/corona-tifier/branch/master/graph/badge.svg)](https://codecov.io/gh/wookieJ/corona-tifier)
 
 Create your own facebook messenger 💬 assistant which understand polish 🇵🇱  language.
