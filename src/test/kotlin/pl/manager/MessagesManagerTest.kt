@@ -23,7 +23,7 @@ internal class MessagesManagerTest {
     @Test
     fun `Should send message via facebook api`() {
         // given
-        val accessToken = "token"
+        val accessToken = "access_token"
         val messageRequest = MessageRequest(
             recipient = Recipient("recipient_id"), message = Message("message content")
         )
