@@ -81,12 +81,13 @@ internal class CountryWebhookHandlerTest {
             outputContexts = listOf(
                 Context(
                     name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
-                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                        WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                    )
                 )
-                )
-            ), parameters = mapOf(
-            CountryWebhookHandler.COUNTRY_PARAMETER_NAME to "Polska"
-        )
+            ),
+            parameters = mapOf(
+                CountryWebhookHandler.COUNTRY_PARAMETER_NAME to "Polska"
+            )
         )
         val webhookRequest = WebhookRequest(null, queryResult, null, null)
         `when`(casesManager.getCountryInformation("poland")).thenReturn(
@@ -119,10 +120,11 @@ internal class CountryWebhookHandlerTest {
             outputContexts = listOf(
                 Context(
                     name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
-                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                        WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                    )
                 )
-                )
-            ), parameters = mapOf()
+            ),
+            parameters = mapOf()
         )
         val webhookRequest = WebhookRequest(null, queryResult, null, null)
 
@@ -141,12 +143,13 @@ internal class CountryWebhookHandlerTest {
             outputContexts = listOf(
                 Context(
                     name = WebhookCommonExtractor.CONTEXT_NAME, parameters = mapOf(
-                    WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                        WebhookCommonExtractor.RECIPIENT_ID_PARAMETER_NAME to "user_id"
+                    )
                 )
-                )
-            ), parameters = mapOf(
-            CountryWebhookHandler.COUNTRY_PARAMETER_NAME to "NotExistingCountry"
-        )
+            ),
+            parameters = mapOf(
+                CountryWebhookHandler.COUNTRY_PARAMETER_NAME to "NotExistingCountry"
+            )
         )
         val webhookRequest = WebhookRequest(null, queryResult, null, null)
 

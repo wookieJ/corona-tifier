@@ -17,7 +17,7 @@ import pl.model.CountryInformation
 internal class CasesManagerTest {
     private val restTemplate: RestTemplate = mock(RestTemplate::class.java)
     private val casesProperties: CasesProperties = CasesProperties(
-        apiUrl = "http://cases", cron = "0 0 8-23 ? * * *"
+        apiUrl = "http://cases"
     )
     private val casesManager: CasesManager = CasesManager(restTemplate, casesProperties)
 
