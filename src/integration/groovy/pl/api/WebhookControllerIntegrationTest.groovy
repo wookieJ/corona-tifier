@@ -189,4 +189,21 @@ class WebhookControllerIntegrationTest extends WireMockIntegrationSpec {
         then:
         thrown(Exception)
     }
+
+    def "Should throw exception if display name is empty"() {
+        given:
+        MessagesStubs.sendMessageWithSuccessStub("recipient_id", DefaultWebhookHandler.DEFAULT_MESSAGE, "message_id")
+        def queryResult = [
+                intent: [
+                        displayName: ""
+                ] as Intent
+        ] as QueryResult
+        def webhookRequest = new WebhookRequest(null, queryResult, null, null)
+
+        when:
+        webhookController.webHookEvent(webhookRequest)
+
+        then:
+        thrown(Exception)
+    }
 }
