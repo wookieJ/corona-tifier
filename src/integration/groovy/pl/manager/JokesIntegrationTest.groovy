@@ -1,4 +1,4 @@
-package pl.api
+package pl.manager
 
 import org.springframework.beans.factory.annotation.Autowired
 import pl.WireMockIntegrationSpec

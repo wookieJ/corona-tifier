@@ -16,7 +16,7 @@ import pl.entity.MessageRequest
 import pl.entity.Recipient
 
 internal class MessagesManagerTest {
-    private val facebookProperties: FacebookProperties = FacebookProperties(apiUrl = "http://facebook/send")
+    private val facebookProperties: FacebookProperties = FacebookProperties(apiUrl = "http://facebook")
     private val restTemplate: RestTemplate = mock(RestTemplate::class.java)
     private val messagesManager = MessagesManager(restTemplate, facebookProperties)
 
@@ -29,7 +29,7 @@ internal class MessagesManagerTest {
         )
         `when`(
             restTemplate.postForEntity(
-                eq("http://facebook/send?access_token=$accessToken"), eq(messageRequest), eq(Any::class.java)
+                eq("http://facebook/v6.0/me/messages?access_token=$accessToken"), eq(messageRequest), eq(Any::class.java)
             )
         ).thenReturn(
             ResponseEntity(
@@ -53,7 +53,7 @@ internal class MessagesManagerTest {
         )
         `when`(
             restTemplate.postForEntity(
-                eq("http://facebook/send?access_token=$accessToken"), eq(messageRequest), eq(Any::class.java)
+                eq("http://facebook/v6.0/me/messages?access_token=$accessToken"), eq(messageRequest), eq(Any::class.java)
             )
         ).thenReturn(
             ResponseEntity(

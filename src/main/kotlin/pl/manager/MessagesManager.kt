@@ -14,9 +14,9 @@ class MessagesManager(
     val facebookProperties: FacebookProperties
 ) {
     fun sendMessage(accessToken: String, messageRequest: MessageRequest): Any {
-        logger.info("Sending message to ${messageRequest.recipient}")
+        logger.info("Sending message to ${messageRequest.recipient.id}")
         val facebookHost = facebookProperties.apiUrl ?: throw Exception("Facebook API url not found")
-        val facebookApiUrl = "$facebookHost?access_token=$accessToken"
+        val facebookApiUrl = "$facebookHost/v6.0/me/messages?access_token=$accessToken"
         val response: ResponseEntity<Any> = restTemplate.postForEntity(facebookApiUrl, messageRequest, Any::class.java)
         if (!response.statusCode.is2xxSuccessful) {
             logger.error("Problems with sending message to ${messageRequest.recipient.id}: ${response.body}")
