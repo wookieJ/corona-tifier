@@ -123,7 +123,7 @@ class WebhookControllerIntegrationTest extends WireMockIntegrationSpec {
         response.body["message_id"] == "message_id"
     }
 
-    def "Should throw error while access token environment variable not found"() {
+    def "Should throw error if access token environment variable not found"() {
         given:
         System.clearProperty(WebhookController.ACCESS_TOKEN_ENV_NAME)
 
@@ -179,6 +179,23 @@ class WebhookControllerIntegrationTest extends WireMockIntegrationSpec {
         def queryResult = [
                 intent: [
                         displayName: null
+                ] as Intent
+        ] as QueryResult
+        def webhookRequest = new WebhookRequest(null, queryResult, null, null)
+
+        when:
+        webhookController.webHookEvent(webhookRequest)
+
+        then:
+        thrown(Exception)
+    }
+
+    def "Should throw exception if display name is empty"() {
+        given:
+        MessagesStubs.sendMessageWithSuccessStub("recipient_id", DefaultWebhookHandler.DEFAULT_MESSAGE, "message_id")
+        def queryResult = [
+                intent: [
+                        displayName: ""
                 ] as Intent
         ] as QueryResult
         def webhookRequest = new WebhookRequest(null, queryResult, null, null)

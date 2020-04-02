@@ -3,7 +3,6 @@ jobs:
 
 cases:
   api-url: "https://corona.lmao.ninja"
-  cron: "0 0 8-23 ? * * *"
 
 facebook:
   api-url: "https://graph.facebook.com"
