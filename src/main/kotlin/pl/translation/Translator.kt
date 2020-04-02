@@ -37,6 +37,8 @@ class Translator {
             "brazylia" -> "brazil"
             "turcja" -> "turkey"
             "rosja" -> "russia"
+            "norwegia" -> "norway"
+            "norwegii" -> "norway"
             else -> null
         }
     }
