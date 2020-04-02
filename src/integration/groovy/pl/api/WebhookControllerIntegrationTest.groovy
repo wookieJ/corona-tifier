@@ -123,14 +123,6 @@ class WebhookControllerIntegrationTest extends WireMockIntegrationSpec {
         response.body["message_id"] == "message_id"
     }
 
-    def "Should throw exception if webhook request not found"() {
-        when:
-        webhookController.webHookEvent(null)
-
-        then:
-        thrown(Exception)
-    }
-
     def "Should throw error if access token environment variable not found"() {
         given:
         System.clearProperty(WebhookController.ACCESS_TOKEN_ENV_NAME)
