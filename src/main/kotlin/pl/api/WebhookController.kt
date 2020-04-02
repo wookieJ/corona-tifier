@@ -27,7 +27,23 @@ class WebhookController(
     fun webHookEvent(@RequestBody webhookRequest: WebhookRequest): ResponseEntity<Any> {
         logger.debug("POST /webhook with body: $webhookRequest")
         val accessToken: String = environment[ACCESS_TOKEN_ENV_NAME] ?: throw Exception("Access token not found")
-        val intentType = webhookRequest.queryResult?.intent?.displayName?.toLowerCase() ?: throw Exception("Intent type not recognised")
+
+        val queryResult = webhookRequest.queryResult
+        if (queryResult == null) {
+            throw Exception("Intent type not recognised")
+        }
+
+        val intent = queryResult.intent
+        if (intent == null) {
+            throw Exception("Intent type not recognised")
+        }
+
+        val displayName = intent.displayName
+        if (displayName == null) {
+            throw Exception("Intent type not recognised")
+        }
+
+        val intentType = displayName.toLowerCase()
 
         logger.info("Intent type $intentType found")
         val webhookResponse = when (intentType) {
