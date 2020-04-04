@@ -36,8 +36,8 @@ class WebhookControllerIntegrationTest extends WireMockIntegrationSpec {
 
     def "Should send message with Poland country cases"() {
         given:
-        def countryCasesMessage = "Liczba przypadków : *1984*\\nLiczba śmierci : *26*\\nDzisiaj przybyło : *122*\\n" +
-                "Dzisiaj zmarło : *4*\\nUzdrowionych : *7*"
+        def countryCasesMessage = "Liczba przypadków : 1,984\\nLiczba śmierci : 26\\nDzisiaj przybyło : 122\\n" +
+                "Dzisiaj zmarło : 4\\nUzdrowionych : 7\\nŚmiertelność : 79%"
         CasesStubs.getCountryStub("poland", CasesResponses.polandCasesResponse())
         MessagesStubs.sendMessageWithSuccessStub("recipient_id", countryCasesMessage, "message_id")
         def queryResult = [

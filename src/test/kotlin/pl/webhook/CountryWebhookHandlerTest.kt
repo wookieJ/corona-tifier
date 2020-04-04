@@ -104,11 +104,12 @@ internal class CountryWebhookHandlerTest {
         assertThat(messageRequest.recipient.id).isEqualTo("user_id")
         assertThat(messageRequest.message.text).isEqualTo(
             """
-            Liczba przypadków : *1000*
-            Liczba śmierci : *10*
-            Dzisiaj przybyło : *100*
-            Dzisiaj zmarło : *1*
-            Uzdrowionych : *10*
+            Liczba przypadków : 1,000
+            Liczba śmierci : 10
+            Dzisiaj przybyło : 100
+            Dzisiaj zmarło : 1
+            Uzdrowionych : 10
+            Śmiertelność : 50%
             """.trimIndent()
         )
     }
