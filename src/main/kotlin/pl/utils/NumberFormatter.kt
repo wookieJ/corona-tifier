@@ -1,11 +1,11 @@
 package pl.utils
 
 import java.text.NumberFormat
-import java.util.*
+import java.util.Locale
 
 class NumberFormatter {
     fun toPercentage(number: Double, fractionDigits: Int): String {
-        val percentageFormatter = NumberFormat.getPercentInstance(Locale.US)
+        val percentageFormatter: NumberFormat = NumberFormat.getPercentInstance(Locale.US)
         percentageFormatter.maximumFractionDigits = fractionDigits
         return percentageFormatter.format(number)
     }
