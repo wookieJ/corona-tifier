@@ -22,7 +22,7 @@ class MessagesStubs {
                 aResponse()
                         .withStatus(OK.value())
                         .withHeader("Content-type", "application/json")
-                        .withBody(MessagesResponses.succesfullySentMessageResponse(recipientId, responseMessageId))
+                        .withBody(MessagesResponses.successfullySentMessageResponse(recipientId, responseMessageId))
         ))
     }
 }

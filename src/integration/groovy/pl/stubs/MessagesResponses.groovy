@@ -2,7 +2,7 @@ package pl.stubs
 
 class MessagesResponses {
 
-    static String succesfullySentMessageResponse(def recipientId, def messageId) {
+    static String successfullySentMessageResponse(def recipientId, def messageId) {
         """
         {
           "recipient_id": "${recipientId}",
