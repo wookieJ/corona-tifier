@@ -17,7 +17,7 @@ class CasesManager(
     fun getCountryInformation(country: String): CountryInformation {
         try {
             val casesHost: String? = casesProperties.apiUrl ?: throw Exception("Cases apiUrl not defined")
-            val countryResponse: ResponseEntity<CountryInformation> = restTemplate.getForEntity("$casesHost/countries/$country", CountryInformation::class.java)
+            val countryResponse: ResponseEntity<CountryInformation> = restTemplate.getForEntity("$casesHost/v2/countries/$country", CountryInformation::class.java)
             if (!countryResponse.statusCode.is2xxSuccessful) {
                 throw HttpResponseException(countryResponse.statusCodeValue, "[${countryResponse.statusCode}] ${countryResponse.body}")
             }
@@ -35,7 +35,7 @@ class CasesManager(
     fun getCountriesInformation(): Array<CountryInformation> {
         try {
             val casesHost: String? = casesProperties.apiUrl ?: throw Exception(CASES_API_URL_NOT_FOUND_MESSAGE)
-            val countriesResponse: ResponseEntity<Array<CountryInformation>> = restTemplate.getForEntity("$casesHost/countries", Array<CountryInformation>::class.java)
+            val countriesResponse: ResponseEntity<Array<CountryInformation>> = restTemplate.getForEntity("$casesHost/v2/countries", Array<CountryInformation>::class.java)
             if (!countriesResponse.statusCode.is2xxSuccessful) {
                 throw HttpResponseException(countriesResponse.statusCodeValue, "[${countriesResponse.statusCode}] ${countriesResponse.body}")
             }

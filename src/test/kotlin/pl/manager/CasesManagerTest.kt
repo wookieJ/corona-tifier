@@ -25,7 +25,7 @@ internal class CasesManagerTest {
     fun `Should return all countries cases`() {
         // given
         `when`(
-            restTemplate.getForEntity(eq("http://cases/countries"), eq(Array<CountryInformation>::class.java))
+            restTemplate.getForEntity(eq("http://cases/v2/countries"), eq(Array<CountryInformation>::class.java))
         ).thenReturn(
             ResponseEntity(
                 arrayOf(
@@ -67,7 +67,7 @@ internal class CasesManagerTest {
     fun `Should throw exception when case response status code is not 2xx while getting all countries cases`() {
         // given
         `when`(
-            restTemplate.getForEntity(eq("http://cases/countries"), eq(Array<CountryInformation>::class.java))
+            restTemplate.getForEntity(eq("http://cases/v2/countries"), eq(Array<CountryInformation>::class.java))
         ).thenReturn(
             ResponseEntity(HttpStatus.NOT_FOUND)
         )
@@ -81,7 +81,7 @@ internal class CasesManagerTest {
     fun `Should catch client exception while getting all countries cases`() {
         // given
         `when`(
-            restTemplate.getForEntity(eq("http://cases/countries"), eq(Array<CountryInformation>::class.java))
+            restTemplate.getForEntity(eq("http://cases/v2/countries"), eq(Array<CountryInformation>::class.java))
         ).thenThrow(HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Server unavailable"))
 
         // then
@@ -95,7 +95,7 @@ internal class CasesManagerTest {
         // given
         val countryName = "Poland"
         `when`(
-            restTemplate.getForEntity(eq("http://cases/countries/$countryName"), eq(CountryInformation::class.java))
+            restTemplate.getForEntity(eq("http://cases/v2/countries/$countryName"), eq(CountryInformation::class.java))
         ).thenReturn(
             ResponseEntity(
                 CountryInformation(country = countryName, cases = 1_000, todayCases = 100, deaths = 10, todayDeaths = 1, recovered = 10, critical = 3),
@@ -133,7 +133,7 @@ internal class CasesManagerTest {
         val countryName = "Poland"
 
         `when`(
-            restTemplate.getForEntity(eq("http://cases/countries/$countryName"), eq(CountryInformation::class.java))
+            restTemplate.getForEntity(eq("http://cases/v2/countries/$countryName"), eq(CountryInformation::class.java))
         ).thenReturn(
             ResponseEntity(HttpStatus.NOT_FOUND)
         )
@@ -149,7 +149,7 @@ internal class CasesManagerTest {
         val countryName = "Poland"
 
         `when`(
-            restTemplate.getForEntity(eq("http://cases/countries/$countryName"), eq(CountryInformation::class.java))
+            restTemplate.getForEntity(eq("http://cases/v2/countries/$countryName"), eq(CountryInformation::class.java))
         ).thenThrow(HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Server unavailable"))
 
         // then

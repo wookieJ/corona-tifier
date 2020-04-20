@@ -10,7 +10,7 @@ import static org.springframework.http.HttpStatus.OK
 
 class CasesStubs {
     static def getCountriesStub(def countries) {
-        stubFor(get(urlEqualTo("/countries")).willReturn(
+        stubFor(get(urlEqualTo("/v2/countries")).willReturn(
                 aResponse()
                         .withStatus(OK.value())
                         .withHeader("Content-type", "application/json")
@@ -19,7 +19,7 @@ class CasesStubs {
     }
 
     static def getCountryStub(def countryName, def country) {
-        stubFor(get(urlEqualTo("/countries/${countryName}")).willReturn(
+        stubFor(get(urlEqualTo("/v2/countries/${countryName}")).willReturn(
                 aResponse()
                         .withStatus(OK.value())
                         .withHeader("Content-type", "application/json")
