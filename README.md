@@ -4,10 +4,6 @@
 
 Create your own facebook messenger 💬 assistant which understand polish 🇵🇱  language.
 
-<p align="center">
- <img width="400" src="../master/screenshots/layout.png">
-</p>
-
 ## How to start
 
 ### Setup Facebook Page <img width="45" src="../master/screenshots/facebook.png">
